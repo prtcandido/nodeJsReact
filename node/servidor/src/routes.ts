@@ -3,6 +3,7 @@ import {Router} from 'express';
 // Importa Controllers
 import TesteController from './controllers/TesteController';
 import ProdutoController from './controllers/ProdutoController';
+import UsuarioController from './controllers/UsuarioController';
 // Validação dos parâmetos da rota
 import ValidaTeste1 from './middlewares/ValidaTeste1';
 // Instancia roteador
@@ -23,5 +24,12 @@ Roteador.get('/produtos/:id', new ProdutoController().show);
 Roteador.post('/produtos', new ProdutoController().store);
 Roteador.put('/produtos/:id', new ProdutoController().update);
 Roteador.delete('/produtos/:id', new ProdutoController().delete);
+Roteador.put('/produtos/fornecedores/:id', new ProdutoController().associarFornecedores);
+
+// Cadastra usuário
+Roteador.post('/usuarios', new UsuarioController().store);
+
+// Autenticação
+Roteador.post('/usuarios/autenticacao', new UsuarioController().autenticacao)
 
 export default Roteador;
